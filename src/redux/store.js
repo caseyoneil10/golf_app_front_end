@@ -1,9 +1,9 @@
 import { configureStore} from '@reduxjs/toolkit'
-import counterReducer from './scoreCount'
+import scoreCounterReducer from './scoreCount'
 
 
 export default configureStore({
 	reducer: {
-		scoreTotal: counterReducer
+		scoreTotal: scoreCounterReducer
 	}
 })

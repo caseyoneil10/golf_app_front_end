@@ -10,15 +10,16 @@ const CurrentRound = (props) => {
 
 const { score, totalScore, hole, overUnderParRound, overUnderPar } = useSelector(state => state.scoreTotal)
 const dispatch = useDispatch()
-
+const currentHoleYardage = `course.hole${hole}Yardage`
+const currentHolePar = `course.hole${hole}Par`
 		return (
 			<>
 			{props.courseData.map((course) => {
           return(
 						<>
 								<h1>Current Round at {course.name} </h1>
-								<h1>Yardage: {course.hole1Yardage} </h1>
-								<h1>Par: {course.hole1Par} </h1>
+								<h1>Par: {eval(currentHolePar)} </h1>
+								<h1>Yardage: {eval(currentHoleYardage)} </h1>
 						</>
 					)
 				})}

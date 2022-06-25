@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector} from 'react-redux'
-import { increment } from './redux/scoreCount'
-import { decrement } from './redux/scoreCount'
+
 import CurrentRound from './components/currentRound'
 import HomeScreen from './components/homeScreen'
 import axios from 'axios'
@@ -28,26 +27,16 @@ const App = () => {
 
 
 
-  const { score } = useSelector(state => state.scoreTotal)
+  const { score, totalScore, hole } = useSelector(state => state.scoreTotal)
+
+  // let currentYardage = course.hole + hole + 'Yardage'
+  // console.log(currentYardage);
 
   const dispatch = useDispatch()
     return (
     <>
       <HomeScreen/>
-      <CurrentRound/>
-      <h1>Your Current Score for this hole is: {score}</h1>
-      <h1>Your Total Score for this round is: {score}</h1>
-      <button onClick={() =>dispatch(increment()) }>Add Stroke</button>
-      <button onClick={() =>dispatch(decrement()) }>Subtract Stroke</button>
-
-      {courseData.map((course) => {
-          return(
-            <div>
-            <h3>Name: {course.name}</h3>
-            <h3>Slope Rating: {course.slopeRating}</h3>
-            <h3>Course Rating: {course.courseRating}</h3>
-            </div>
-          )})}
+      <CurrentRound courseData={courseData}/>
     </>
     )
 }

@@ -9,19 +9,18 @@ export const scoreCounterSlice = createSlice({
     overUnderPar: 0,
     overUnderParRound: 0,
     par: 4,
+    course: ''
   },
   reducers: {
     increment: state => {
       state.totalScore += 1
       state.score += 1
       state.overUnderPar = (state.score - state.par)
-
     },
     decrement: state => {
       state.totalScore -= 1
       state.score -= 1
       state.overUnderPar = (state.score - state.par)
-
     },
     reset: state => {
       state.score = 0
@@ -33,7 +32,10 @@ export const scoreCounterSlice = createSlice({
     nextHole: state => {
 			if (state.hole == 18) {
 			state.hole = 1 }
-		 else {  state.overUnderParRound += (state.score - state.par)
+      else if (state.score == 0 ) {
+        alert("Enter a Score to proceed to the next hole!")
+      }
+		  else {  state.overUnderParRound += (state.score - state.par)
        state.hole += 1
        state.score = 0
        state.overUnderPar = 0
@@ -47,7 +49,6 @@ export const scoreCounterSlice = createSlice({
 	}
   }
 })
-
 
 export const { increment, decrement, reset, nextHole, previousHole } = scoreCounterSlice.actions
 

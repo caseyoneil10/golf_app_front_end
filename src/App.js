@@ -35,7 +35,7 @@ const App = () => {
   const dispatch = useDispatch()
     return (
     <>
-      <HomeScreen/>
+      <HomeScreen courseData={courseData}/>
       <CurrentRound courseData={courseData}/>
     </>
     )

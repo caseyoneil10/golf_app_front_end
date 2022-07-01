@@ -13,7 +13,36 @@ const dispatch = useDispatch()
 const currentHoleYardage = `course.hole${hole}Yardage`
 const currentHolePar = `course.hole${hole}Par`
 const [emptyCourse, setEmptyCourse] = useState('Liberty Lake')
-		return (
+
+let emptyRound = {course: '', date: '', score: '', weather: ''}
+
+const [round, setRound] = useState(emptyRound)
+
+const handleChange = (event) => {
+	setRound({...round, [event.target.name]: event.target.value})
+	}
+
+const handleSubmit = (event) => {
+		event.preventDefault()
+		round.course = emptyCourse
+		round.date = date
+		round.score = totalScore
+		props.handleCreate(round)
+		setRound({course: '', date: '', score: '', weather: ''})
+
+}
+
+//FIND CURRENT DATE AND ASSIGN TO VARIABLE FOR REFERENCE IN THE VALUE DATE INPUT
+//extremely helpful link below
+//https://stackoverflow.com/questions/49277112/react-js-how-to-set-a-default-value-for-input-date-type
+const currentDate = new Date()
+currentDate.setDate(currentDate.getDate())
+const date = currentDate.toISOString().substr(0,10)
+const toggleReadOnly = () => {
+
+}
+
+return (
 			<>
 			<h1>Select Your Course Below</h1>
 			<label htmlFor="course-names"></label>
@@ -36,6 +65,16 @@ const [emptyCourse, setEmptyCourse] = useState('Liberty Lake')
 								<h1>Current Round at {course.name} </h1>
 								<h1>Par: {eval(currentHolePar)} </h1>
 								<h1>Yardage: {eval(currentHoleYardage)} </h1>
+								<form onSubmit={handleSubmit}>
+									{hole > 0 ?
+									<div>
+									<input value={date} onChange={handleChange} id="Date" type="date" name='date'></input>
+									<input value={totalScore} onChange={handleChange}  name='score' readOnly></input>
+									<input value={course.name} onChange={handleChange}  name='course' readOnly></input>
+									<input placeholder="Course Conditions (fair, good, rain, etc.)" onChange={handleChange} value={round.weather} name='weather'></input>
+									<input type="submit"></input>
+									</div> : null}
+								</form>
 						</div>
 					)
 				})}
@@ -54,6 +93,8 @@ const [emptyCourse, setEmptyCourse] = useState('Liberty Lake')
 	      <button onClick={() =>dispatch(increment()) }>Add Stroke</button>
 	      <button onClick={() =>dispatch(decrement()) }>Subtract Stroke</button>
 	      <button onClick={() =>dispatch(reset()) }>Restart Round</button>
+
+
 				</>
 		)
 }

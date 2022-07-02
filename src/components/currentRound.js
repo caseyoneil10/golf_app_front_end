@@ -122,11 +122,12 @@ let averageShots = (totalShots / holeAvg.length)
 
 console.log(averageShots)
 
-holeAvg.sort()
+holeAvg.sort(function(a, b){return a-b})
 console.log(holeAvg)
 
+//https://www.w3schools.com/jsref/jsref_sort.asp
 let lowestScore = holeAvg[0]
-console.log(lowestScore);
+console.log(lowestScore)
 
 //FIND CURRENT DATE AND ASSIGN TO VARIABLE FOR REFERENCE IN THE VALUE DATE INPUT
 //extremely helpful link below

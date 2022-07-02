@@ -47,15 +47,49 @@ const App = () => {
   axios.post('https://golf-app-backend.herokuapp.com/api/scores', addRound)
   .then(response => {
     setRoundData([...roundData, response.data])
+    getRoundData()
+    getUserData()
+  })
+}
+    //CREATE NEW HOLE SCORE
+    const handleCreateHoleScore = (addRound) => {
+  axios.post('https://golf-app-backend.herokuapp.com/api/holescore', addRound)
+  .then(response => {
+    setRoundData([...userData, response.data])
   })
 }
 
+const handleDeleteRound = (deletedRound) => {
+  axios.delete('https://golf-app-backend.herokuapp.com/api/scores/' +
+  deletedRound.id)
+  .then((response) => {
+    setRoundData(roundData.filter(round => round.id !== deletedRound.id))
+  })
+}
+const handleDeleteRoundDetail = (deletedRound) => {
+  axios.delete('https://golf-app-backend.herokuapp.com/api/holescore/' +
+  deletedRound.id)
+  .then((response) => {
+    setUserData(userData.filter(round => round.id !== deletedRound.id))
+  })
+}
+
+const handleUpdateRoundTotal = (editRoundTotal) => {
+  console.log(editRoundTotal);
+  axios.put('https://golf-app-backend.herokuapp.com/api/scores/' + editRoundTotal.id, editRoundTotal)
+  .then((response) => {
+    setRoundData(roundData.map((round) => {
+      return round.id !== editRoundTotal.id ? round : response.data
+    }))
+  })
+}
 
     useEffect(() => {
       getCourseData()
       getRoundData()
       getUserData()
     }, [])
+
 
 
 
@@ -67,10 +101,17 @@ const App = () => {
   const dispatch = useDispatch()
     return (
     <>
+      <CurrentRound userData={userData} handleCreate={handleCreate} handleCreateHoleScore={handleCreateHoleScore} courseData={courseData}/>
       <HomeScreen courseData={courseData}/>
-      <CurrentRound handleCreate={handleCreate} courseData={courseData}/>
-      <RoundData roundData={roundData}/>
-      <UserData userData={userData}/>
+
+      <UserData userData={userData} handleDeleteRoundDetail={handleDeleteRoundDetail}/>
+      {roundData.map((round) => {
+        return(
+          <>
+          <RoundData roundData={roundData} handleDeleteRound={handleDeleteRound} handleUpdateRoundTotal={handleUpdateRoundTotal} round={round}/>
+          </>
+        )
+      })}
     </>
     )
 }

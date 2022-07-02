@@ -12,15 +12,79 @@ const { score, totalScore, hole, overUnderParRound, overUnderPar } = useSelector
 const dispatch = useDispatch()
 const currentHoleYardage = `course.hole${hole}Yardage`
 const currentHolePar = `course.hole${hole}Par`
+const currentHole = `hole${hole}`
 const [emptyCourse, setEmptyCourse] = useState('Liberty Lake')
 
 let emptyRound = {course: '', date: '', score: '', weather: ''}
+let emptyHole = {course: '', hole1: 0, hole2: 0, hole3: 0, hole4: 0, hole5: 0, hole6: 0, hole7: 0, hole8: 0, hole9: 0, hole10: 0, hole11: 0, hole12: 0, hole13: 0, hole14: 0, hole15: 0, hole16: 0, hole17: 0, hole18: 0}
 
 const [round, setRound] = useState(emptyRound)
+const [holeScore, setHoleScore] = useState(emptyHole)
 
 const handleChange = (event) => {
 	setRound({...round, [event.target.name]: event.target.value})
 	}
+
+const handleChangeHoleScore = (event) => {
+	event.preventDefault()
+	if (currentHole == 'hole1') {
+	holeScore.hole1 = score }
+	else if (currentHole == 'hole2') {
+		holeScore.hole2 = score
+	}
+	else if (currentHole == 'hole3') {
+		holeScore.hole3 = score
+	}
+	else if (currentHole == 'hole4') {
+		holeScore.hole4 = score
+	}
+	else if (currentHole == 'hole5') {
+		holeScore.hole5 = score
+	}
+	else if (currentHole == 'hole6') {
+		holeScore.hole6 = score
+	}
+	else if (currentHole == 'hole7') {
+		holeScore.hole7 = score
+	}
+	else if (currentHole == 'hole8') {
+		holeScore.hole8 = score
+	}
+	else if (currentHole == 'hole9') {
+		holeScore.hole9 = score
+	}
+	else if (currentHole == 'hole10') {
+		holeScore.hole10 = score
+	}
+	else if (currentHole == 'hole11') {
+		holeScore.hole11 = score
+	}
+	else if (currentHole == 'hole12') {
+		holeScore.hole12 = score
+	}
+	else if (currentHole == 'hole13') {
+		holeScore.hole13 = score
+	}
+	else if (currentHole == 'hole14') {
+		holeScore.hole14 = score
+	}
+	else if (currentHole == 'hole15') {
+		holeScore.hole15 = score
+	}
+	else if (currentHole == 'hole16') {
+		holeScore.hole16 = score
+	}
+	else if (currentHole == 'hole17') {
+		holeScore.hole17 = score
+	}
+	else if (currentHole == 'hole18') {
+		holeScore.hole18 = score
+	}
+	setHoleScore({...holeScore, [event.target.name]: event.target.value})
+	dispatch(nextHole())
+
+	}
+	console.log(holeScore);
 
 const handleSubmit = (event) => {
 		event.preventDefault()
@@ -28,8 +92,14 @@ const handleSubmit = (event) => {
 		round.date = date
 		round.score = totalScore
 		props.handleCreate(round)
+		handleSubmitScoreHoleTotal()
 		setRound({course: '', date: '', score: '', weather: ''})
-
+}
+const handleSubmitScoreHoleTotal = (event) => {
+		holeScore.course = emptyCourse
+		props.handleCreateHoleScore(holeScore)
+		dispatch(reset())
+		setRound({course: '', hole1: 0, hole2: 0, hole3: 0, hole4: 0, hole5: 0, hole6: 0, hole7: 0, hole8: 0, hole9: 0, hole10: 0, hole11: 0, hole12: 0, hole13: 0, hole14: 0, hole15: 0, hole16: 0, hole17: 0, hole18: 0})
 }
 
 //FIND CURRENT DATE AND ASSIGN TO VARIABLE FOR REFERENCE IN THE VALUE DATE INPUT
@@ -39,8 +109,8 @@ const currentDate = new Date()
 currentDate.setDate(currentDate.getDate())
 const date = currentDate.toISOString().substr(0,10)
 const toggleReadOnly = () => {
-
 }
+
 
 return (
 			<>
@@ -78,23 +148,23 @@ return (
 						</div>
 					)
 				})}
+				<form onSubmit={handleChangeHoleScore}>
+					<input value={score} name={`${currentHole}`}onChange={handleChangeHoleScore}></input>
+					<input type='submit' value='Next Hole'></input>
+				</form>
 				<h1>Current Score for this hole is: {score} </h1>
+
 				{overUnderPar < 0 ? <h1>You are currently {overUnderPar} for this hole </h1> : null}
 				{overUnderPar == 0 ? <h1>You are currently even for this hole </h1> : null}
 				{overUnderPar > 0 ? <h1>You are currently {overUnderPar} over for this hole </h1> : null}
-
 				<h1>Hole # {hole}</h1>
-
-				<button onClick={() =>dispatch(nextHole()) }>Next Hole</button>
-				<button onClick={() =>dispatch(previousHole()) }>Previous Hole</button>
+				<button onClick={() => dispatch(previousHole()) }>Previous Hole</button>
 				{overUnderParRound < 0 && hole > 1 ? <h1>Total Score for this round is {totalScore}. You are {overUnderParRound} under par.</h1> : null}
 				{overUnderParRound == 0 && hole > 1 ? <h1>Total Score for this round is {totalScore}. You are even to par.</h1> : null}
 				{overUnderParRound > 0 && hole > 1 ? <h1>Total Score for this round is {totalScore}. You are {overUnderParRound} over par.</h1> : null}
-	      <button onClick={() =>dispatch(increment()) }>Add Stroke</button>
-	      <button onClick={() =>dispatch(decrement()) }>Subtract Stroke</button>
-	      <button onClick={() =>dispatch(reset()) }>Restart Round</button>
-
-
+	      <button onClick={() => dispatch(increment()) }>Add Stroke</button>
+	      <button onClick={() => dispatch(decrement()) }>Subtract Stroke</button>
+	      <button onClick={() => dispatch(reset()) }>Restart Round</button>
 				</>
 		)
 }

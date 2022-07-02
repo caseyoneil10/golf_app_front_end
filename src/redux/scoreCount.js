@@ -30,10 +30,10 @@ export const scoreCounterSlice = createSlice({
       state.overUnderParRound = 0
     },
     nextHole: state => {
-			if (state.hole == 18) {
-			state.hole = 1 }
-      else if (state.score == 0 ) {
+			 if (state.score == -1 ) {
         alert("Enter a Score to proceed to the next hole!")
+      } else if (state.hole == 18) {
+        alert('Round is finished! Click the Submit Round Button to finalize your score!')
       }
 		  else {  state.overUnderParRound += (state.score - state.par)
        state.hole += 1

@@ -13,13 +13,17 @@ const dispatch = useDispatch()
 const currentHoleYardage = `course.hole${hole}Yardage`
 const currentHolePar = `course.hole${hole}Par`
 const currentHole = `hole${hole}`
+const currentHoleRef = `props.userData[i].${currentHole}`
 const [emptyCourse, setEmptyCourse] = useState('Liberty Lake')
+
 
 let emptyRound = {course: '', date: '', score: '', weather: ''}
 let emptyHole = {course: '', hole1: 0, hole2: 0, hole3: 0, hole4: 0, hole5: 0, hole6: 0, hole7: 0, hole8: 0, hole9: 0, hole10: 0, hole11: 0, hole12: 0, hole13: 0, hole14: 0, hole15: 0, hole16: 0, hole17: 0, hole18: 0}
 
 const [round, setRound] = useState(emptyRound)
 const [holeScore, setHoleScore] = useState(emptyHole)
+let holeAvg = []
+let totalShots = 0
 
 const handleChange = (event) => {
 	setRound({...round, [event.target.name]: event.target.value})
@@ -82,9 +86,7 @@ const handleChangeHoleScore = (event) => {
 	}
 	setHoleScore({...holeScore, [event.target.name]: event.target.value})
 	dispatch(nextHole())
-
 	}
-	console.log(holeScore);
 
 const handleSubmit = (event) => {
 		event.preventDefault()
@@ -102,6 +104,30 @@ const handleSubmitScoreHoleTotal = (event) => {
 		setRound({course: '', hole1: 0, hole2: 0, hole3: 0, hole4: 0, hole5: 0, hole6: 0, hole7: 0, hole8: 0, hole9: 0, hole10: 0, hole11: 0, hole12: 0, hole13: 0, hole14: 0, hole15: 0, hole16: 0, hole17: 0, hole18: 0})
 }
 
+
+for (let i = 0; i < props.userData.length; i++) {
+	if (props.userData[i].course == emptyCourse) {
+				holeAvg.push(eval(currentHoleRef))
+				console.log(holeAvg);
+			}
+}
+
+for (let i = 0; i < holeAvg.length; i++) {
+  totalShots += holeAvg[i]
+	console.log(totalShots)
+}
+
+let averageShots = (totalShots / holeAvg.length)
+
+
+console.log(averageShots)
+
+holeAvg.sort()
+console.log(holeAvg)
+
+let lowestScore = holeAvg[0]
+console.log(lowestScore);
+
 //FIND CURRENT DATE AND ASSIGN TO VARIABLE FOR REFERENCE IN THE VALUE DATE INPUT
 //extremely helpful link below
 //https://stackoverflow.com/questions/49277112/react-js-how-to-set-a-default-value-for-input-date-type
@@ -110,7 +136,6 @@ currentDate.setDate(currentDate.getDate())
 const date = currentDate.toISOString().substr(0,10)
 const toggleReadOnly = () => {
 }
-
 
 return (
 			<>
@@ -153,7 +178,8 @@ return (
 					<input type='submit' value='Next Hole'></input>
 				</form>
 				<h1>Current Score for this hole is: {score} </h1>
-
+				<h1>You Average {averageShots} strokes on this hole.</h1>
+				<h1>Your Best Score on this hole is {lowestScore}</h1>
 				{overUnderPar < 0 ? <h1>You are currently {overUnderPar} for this hole </h1> : null}
 				{overUnderPar == 0 ? <h1>You are currently even for this hole </h1> : null}
 				{overUnderPar > 0 ? <h1>You are currently {overUnderPar} over for this hole </h1> : null}

@@ -2,6 +2,17 @@ import React, { useState, useEffect } from 'react'
 
 const UserData = (props) => {
 
+	const [roundTotalData, setRoundTotalData] = useState({...props.round})
+
+		const handleChange = (event) => {
+			setRoundTotalData({...roundTotalData, [event.target.name]: event.target.value})
+		}
+
+		const handleSubmit = (event) => {
+			event.preventDefault()
+			console.log(roundTotalData);
+			props.handleUpdateRoundDetail(roundTotalData)
+		}
 	return (
 		<>
 			<h1>List of User Rounds</h1>
@@ -27,6 +38,29 @@ const UserData = (props) => {
 						<h2>Hole 16: {data.hole16}</h2>
 						<h2>Hole 17: {data.hole17}</h2>
 						<h2>Hole 18: {data.hole18}</h2>
+						<form onSubmit={handleSubmit}>
+						<input type="text" name="course" defaultValue={data.course} onChange={handleChange}></input>
+						<input type="number" name="hole1" defaultValue={data.hole1} onChange={handleChange}></input>
+						<input type="number" name="hole2" defaultValue={data.hole2} onChange={handleChange}></input>
+						<input type="number" name="hole3" defaultValue={data.hole3} onChange={handleChange}></input>
+						<input type="number" name="hole4" defaultValue={data.hole4} onChange={handleChange}></input>
+						<input type="number" name="hole5" defaultValue={data.hole5} onChange={handleChange}></input>
+						<input type="number" name="hole6" defaultValue={data.hole6} onChange={handleChange}></input>
+						<input type="number" name="hole7" defaultValue={data.hole7} onChange={handleChange}></input>
+						<input type="number" name="hole8" defaultValue={data.hole8} onChange={handleChange}></input>
+						<input type="number" name="hole9" defaultValue={data.hole9} onChange={handleChange}></input>
+						<input type="number" name="hole10" defaultValue={data.hole10} onChange={handleChange}></input>
+						<input type="number" name="hole11" defaultValue={data.hole11} onChange={handleChange}></input>
+						<input type="number" name="hole12" defaultValue={data.hole12} onChange={handleChange}></input>
+						<input type="number" name="hole13" defaultValue={data.hole13} onChange={handleChange}></input>
+						<input type="number" name="hole14" defaultValue={data.hole14} onChange={handleChange}></input>
+						<input type="number" name="hole15" defaultValue={data.hole15} onChange={handleChange}></input>
+						<input type="number" name="hole16" defaultValue={data.hole16} onChange={handleChange}></input>
+						<input type="number" name="hole17" defaultValue={data.hole17} onChange={handleChange}></input>
+						<input type="number" name="hole18" defaultValue={data.hole18} onChange={handleChange}></input>
+
+						<input type="submit" value="Submit Changes"></input>
+						</form>
 						<button onClick={() => {
                         props.handleDeleteRoundDetail(data
                         )

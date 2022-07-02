@@ -83,6 +83,15 @@ const handleUpdateRoundTotal = (editRoundTotal) => {
     }))
   })
 }
+const handleUpdateRoundDetail = (editRoundTotal) => {
+  console.log(editRoundTotal);
+  axios.put('https://golf-app-backend.herokuapp.com/api/holescore/' + editRoundTotal.id, editRoundTotal)
+  .then((response) => {
+    setUserData(userData.map((round) => {
+      return round.id !== editRoundTotal.id ? round : response.data
+    }))
+  })
+}
 
     useEffect(() => {
       getCourseData()
@@ -103,8 +112,13 @@ const handleUpdateRoundTotal = (editRoundTotal) => {
     <>
       <CurrentRound userData={userData} handleCreate={handleCreate} handleCreateHoleScore={handleCreateHoleScore} courseData={courseData}/>
       <HomeScreen courseData={courseData}/>
-
-      <UserData userData={userData} handleDeleteRoundDetail={handleDeleteRoundDetail}/>
+      {userData.map((round) => {
+        return (
+          <>
+      <UserData userData={userData} handleDeleteRoundDetail={handleDeleteRoundDetail} handleUpdateRoundDetail={handleUpdateRoundDetail}
+      round={round}/>
+        </>
+      )})}
       {roundData.map((round) => {
         return(
           <>

@@ -75,7 +75,6 @@ const handleDeleteRoundDetail = (deletedRound) => {
 }
 
 const handleUpdateRoundTotal = (editRoundTotal) => {
-  console.log(editRoundTotal);
   axios.put('https://golf-app-backend.herokuapp.com/api/scores/' + editRoundTotal.id, editRoundTotal)
   .then((response) => {
     setRoundData(roundData.map((round) => {
@@ -84,7 +83,6 @@ const handleUpdateRoundTotal = (editRoundTotal) => {
   })
 }
 const handleUpdateRoundDetail = (editRoundTotal) => {
-  console.log(editRoundTotal);
   axios.put('https://golf-app-backend.herokuapp.com/api/holescore/' + editRoundTotal.id, editRoundTotal)
   .then((response) => {
     setUserData(userData.map((round) => {
@@ -99,30 +97,77 @@ const handleUpdateRoundDetail = (editRoundTotal) => {
       getUserData()
     }, [])
 
+    const [showAllRounds, setShowAllRounds] = useState(false)
+    const [showAllRoundsButton, setShowAllRoundsButton] = useState(true)
+    const [noCurrentRoundInProgress, setNoCurrentRoundInProgress] = useState(true)
+    const [showAllRoundsDetail, setShowAllRoundsDetail] = useState(false)
+    const [showAllRoundsButtonDetail, setShowAllRoundsButtonDetail] = useState(true)
+    const [currentRoundActive, setCurrentRoundActive] = useState(false)
 
+    const showAllUserRounds = () => {
+        setShowAllRounds(!showAllRounds)
+        setShowAllRoundsButton(!showAllRoundsButton)
+    }
+    const showAllUserRoundsDetail = () => {
+        setShowAllRoundsButtonDetail(!showAllRoundsButtonDetail)
+        setShowAllRoundsDetail(!showAllRoundsDetail)
+    }
+    const showAllUserRoundsButton = () => {
+        setShowAllRoundsButton(!showAllRoundsButton)
+    }
+    const currentRoundInProgress = () => {
+      setShowAllRounds(false)
+      setShowAllRoundsButton(true)
+      setNoCurrentRoundInProgress(true)
+      setShowAllRoundsDetail(false)
+      setShowAllRoundsButtonDetail(true)
+      setCurrentRoundActive(false)
+    }
+    const currentRoundInProgress2 = () => {
+      setShowAllRounds(false)
+      setShowAllRoundsButton(false)
+      setCurrentRoundActive(true)
+      setNoCurrentRoundInProgress(true)
+      setShowAllRoundsDetail(false)
+      setShowAllRoundsButtonDetail(false)
+    }
 
 
   const { score, totalScore, hole } = useSelector(state => state.scoreTotal)
 
-  // let currentYardage = course.hole + hole + 'Yardage'
-  // console.log(currentYardage);
 
   const dispatch = useDispatch()
     return (
     <>
-      <CurrentRound userData={userData} handleCreate={handleCreate} handleCreateHoleScore={handleCreateHoleScore} courseData={courseData}/>
+
+      <CurrentRound userData={userData} showAllRoundsButton={showAllRoundsButton}
+      setNoCurrentRoundInProgress={setNoCurrentRoundInProgress}
+      noCurrentRoundInProgress={noCurrentRoundInProgress}
+       showAllUserRounds={showAllUserRounds} handleCreate={handleCreate} handleCreateHoleScore={handleCreateHoleScore} courseData={courseData} currentRoundInProgress={currentRoundInProgress}
+       currentRoundInProgress2={currentRoundInProgress2}/>
+
       <HomeScreen courseData={courseData}/>
+      <div className="container">
+      {showAllRoundsButton && !currentRoundActive  ? <button onClick={showAllUserRounds}>Show All Rounds</button> : null}
+
+      {showAllRoundsButton || currentRoundActive ? null : <button onClick={showAllUserRounds}>Close All Rounds</button>}
+
+      {showAllRoundsButtonDetail && !currentRoundActive ? <button onClick={showAllUserRoundsDetail}>Show All Rounds Detail</button> : null}
+
+      {showAllRoundsButtonDetail || currentRoundActive ?  null : <button onClick={showAllUserRoundsDetail}>Close All Rounds Detail</button>}
+      </div>
       {userData.map((round) => {
         return (
           <>
-      <UserData userData={userData} handleDeleteRoundDetail={handleDeleteRoundDetail} handleUpdateRoundDetail={handleUpdateRoundDetail}
-      round={round}/>
+      {showAllRoundsDetail ? <UserData userData={userData} handleDeleteRoundDetail={handleDeleteRoundDetail} handleUpdateRoundDetail={handleUpdateRoundDetail}
+      round={round}/> : null}
         </>
       )})}
       {roundData.map((round) => {
         return(
           <>
-          <RoundData roundData={roundData} handleDeleteRound={handleDeleteRound} handleUpdateRoundTotal={handleUpdateRoundTotal} round={round}/>
+        {showAllRounds && noCurrentRoundInProgress ?  <RoundData roundData={roundData} handleDeleteRound={handleDeleteRound} handleUpdateRoundTotal={handleUpdateRoundTotal} round={round}/> : null
+      }
           </>
         )
       })}

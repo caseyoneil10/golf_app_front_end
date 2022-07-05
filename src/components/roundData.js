@@ -12,6 +12,7 @@ const RoundData = (props) => {
 			event.preventDefault()
 			console.log(roundTotalData);
 			props.handleUpdateRoundTotal(roundTotalData)
+			editForm()
 		}
 
 		const [showEditForm, setShowEditFrom] = useState(false)
@@ -33,11 +34,13 @@ const RoundData = (props) => {
 							Weather	<br/><textarea type="text" name="weather" defaultValue={props.round.weather} onChange={handleChange}></textarea>
 							<br/>
 							Score	<br/><input type="number" name="score" defaultValue={props.round.score} onChange={handleChange}></input>
-							<input type="submit" value="Submit Changes"></input>
+							<br/>
+							<br/>
+							<button className="button danger1" type="submit">Submit Changes</button>
 						</form> : null}
-						{!showEditForm ? <button onClick={editForm}>Edit Round</button> : null}
-						{showEditForm ? <button onClick={editForm}>Close Edit</button> : null}
-						<button className="danger2" onClick={() => {
+						{!showEditForm ? <button className="button danger3" onClick={editForm}>Edit Round</button> : null}
+						{showEditForm ? <button className="button danger2" onClick={editForm}>Close Edit</button> : null}
+						<button className="button danger2" onClick={() => {
                         props.handleDeleteRound(props.round
                         )
                       }}>Delete Round

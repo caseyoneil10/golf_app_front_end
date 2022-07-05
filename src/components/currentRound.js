@@ -189,15 +189,13 @@ return (
 								<h2 id="mainTitle">{course.name} </h2>
 								<h3>Hole # {hole}</h3>
 								<h3>Par {eval(currentHolePar)} || {eval(currentHoleYardage)} Yards </h3>
-								<h4>Current Score on hole #{hole} is: <br/> <span id="score">{score}</span> </h4>
-
+								<h3>Current Score on hole {hole} <br/> <span id="score">{score}</span> </h3>
 								{overUnderParRound < 0 && hole > 1 ? <h4>You are {overUnderParRound} under par.</h4> : null}
 								{overUnderParRound == 0 && hole > 1 ? <h4>You are even to par.</h4> : null}
 								{overUnderParRound > 0 && hole > 1 ? <h4>You are {overUnderParRound} over par.</h4> : null}
-
-								{!userStats &&! showUserSubmitRound ? <button className="danger" onClick={showUserStats}> Show User Stats</button> : null}
-								{userStats ? <button className="danger" onClick={showUserStats}> Close User Stats</button> : null}
-								{hole > 17 && !showUserSubmitRound ? <button className="danger" onClick={showSubmitRound}>Confirm Details and Submit Round</button> : null }
+								{!userStats &&! showUserSubmitRound ? <button className="button danger" onClick={showUserStats}> Show User Stats</button> : null}
+								{userStats ? <button className="button danger" onClick={showUserStats}> Close User Stats</button> : null}
+								{hole > 17 && !showUserSubmitRound ? <button className="button danger" onClick={showSubmitRound}>Confirm Details and Submit Round</button> : null }
 
 								<br/>
 								<br/>
@@ -220,7 +218,7 @@ return (
 									<input className="button-primary" type="submit"></input>
 									<br/>
 									<br/>
-									<button className="danger2" onClick={showSubmitRound}>Close Details</button> </> : null }
+									<button className="button danger2" onClick={showSubmitRound}>Close Details</button> </> : null }
 									</div> : null}
 								</form>
 						</div>
@@ -239,26 +237,26 @@ return (
 				{overUnderParRound > 0 && hole > 1 ? <h1>Total Score for this round is {totalScore}.</h1> : null}
 			</div> : null}
 				{showCurrentRound  && !showUserSubmitRound ? <div className="container">
-				<button className="danger1" onClick={() => dispatch(increment()) }>Add Stroke</button>
+				<button className="button danger1" onClick={() => dispatch(increment()) }>Add Stroke</button>
 				<br/>
 				<br/>
-				<button className="danger2" onClick={() => dispatch(decrement()) }>Subtract Stroke</button>
+				<button className="button danger2" onClick={() => dispatch(decrement()) }>Subtract Stroke</button>
 					<br/>
 					<br/>
 					<form onSubmit={handleChangeHoleScore}>
 						<input hidden value={score} name={`${currentHole}`}onChange={handleChangeHoleScore}></input>
-						<button className="danger1" type='submit'>Next Hole</button>
+						<button className="button danger1" type='submit'>Next Hole</button>
 					</form>
-					<button className="danger2" onClick={() => dispatch(previousHole()) }>Previous Hole</button>
+					<button className="button danger2" onClick={() => dispatch(previousHole()) }>Previous Hole</button>
 					<br/>
 					<br/>
-					<button className="danger" onClick={roundOptions}>Round Options</button>
+					<button className="button danger" onClick={roundOptions}>Round Options</button>
 					<br/>
 					<br/>
-					{showRoundOptions  ? <> <button className="danger1" onClick={() => dispatch(reset()) }>Restart Round</button>
+					{showRoundOptions  ? <> <button className="button" onClick={() => dispatch(reset()) }>Restart Round</button>
 					<br/>
 					<br/>
-					<button className="danger2" onClick={goHome} >Quit Round and Go To Home Screen</button> </> : null}
+					<button className="button" onClick={goHome} >Quit Round and Go Home </button> </> : null}
 				</div> : null}
 				</>
 		)

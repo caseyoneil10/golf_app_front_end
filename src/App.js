@@ -148,14 +148,14 @@ const handleUpdateRoundDetail = (editRoundTotal) => {
 
       <HomeScreen courseData={courseData}/>
       <div className="container">
-      {showAllRoundsButton && !currentRoundActive  ? <button onClick={showAllUserRounds}>Show All Rounds</button> : null}
+      {showAllRoundsButton && !currentRoundActive  ? <button className="button" onClick={showAllUserRounds}>Show All Rounds</button> : null}
 
-      {showAllRoundsButton || currentRoundActive ? null : <button onClick={showAllUserRounds}>Close All Rounds</button>}
+      {showAllRoundsButton || currentRoundActive ? null : <button className="button" onClick={showAllUserRounds}>Close All Rounds</button>}
       <br/>
       <br/>
-      {showAllRoundsButtonDetail && !currentRoundActive ? <button onClick={showAllUserRoundsDetail}>Show All Rounds Detail</button> : null}
+      {showAllRoundsButtonDetail && !currentRoundActive ? <button className="button" onClick={showAllUserRoundsDetail}>Show All Rounds Detail</button> : null}
 
-      {showAllRoundsButtonDetail || currentRoundActive ?  null : <button onClick={showAllUserRoundsDetail}>Close All Rounds Detail</button>}
+      {showAllRoundsButtonDetail || currentRoundActive ?  null : <button className="button" onClick={showAllUserRoundsDetail}>Close All Rounds Detail</button>}
       </div>
       {userData.map((round) => {
         return (

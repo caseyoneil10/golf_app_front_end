@@ -30,7 +30,7 @@ const UserData = (props) => {
 		}
 		const [query, setQuery] = useState("")
 
-	
+
 	return (
 		<div>
 						<h2 id="mainTitle">{props.round.course}</h2>
@@ -60,49 +60,52 @@ const UserData = (props) => {
 						{showEditRound ? <>
 							<br/>
 							<br/>
-							<button onClick={editHole} className="button danger">Edit Individual Holes</button>
+							{!showEditHole ? <><button onClick={editHole} className="button danger">Edit Individual Holes</button>
+							<br/>
+							<br/> </> : null}
+							{showEditHole ? <> <button onClick={editHole} className="button danger smaller">Close Edit Holes</button></> : null}
 							<form onSubmit={handleSubmit}>
-						<h4>Course</h4><input type="text" name="course" defaultValue={props.round.course} onChange={handleChange}></input>
+						<h4>Course</h4><input className="cursor button" type="text" name="course" defaultValue={props.round.course} onChange={handleChange}></input>
 						<br/>
-						<h4>Date</h4><input type="date" name="date" defaultValue={props.round.date} onChange={handleChange}></input>
+						<h4>Date</h4><input className="button cursor" type="date" name="date" defaultValue={props.round.date} onChange={handleChange}></input>
 						<br/>
 						<br/>
 						{showEditHole ? <>
-						<h4>Hole 1</h4><input type="number" name="hole1" defaultValue={props.round.hole1} onChange={handleChange}></input>
+						<h4>Hole 1</h4><input className="button cursor" type="number" name="hole1" defaultValue={props.round.hole1} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 2</h4><input type="number" name="hole2" defaultValue={props.round.hole2} onChange={handleChange}></input>
+						<h4>Hole 2</h4><input className="button cursor" type="number" name="hole2" defaultValue={props.round.hole2} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 3</h4><input type="number" name="hole3" defaultValue={props.round.hole3} onChange={handleChange}></input>
+						<h4>Hole 3</h4><input className="button cursor" type="number" name="hole3" defaultValue={props.round.hole3} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 4</h4><input type="number" name="hole4" defaultValue={props.round.hole4} onChange={handleChange}></input>
+						<h4>Hole 4</h4><input className="button cursor" type="number" name="hole4" defaultValue={props.round.hole4} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 5</h4><input type="number" name="hole5" defaultValue={props.round.hole5} onChange={handleChange}></input>
+						<h4>Hole 5</h4><input className="button cursor" type="number" name="hole5" defaultValue={props.round.hole5} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 6</h4><input type="number" name="hole6" defaultValue={props.round.hole6} onChange={handleChange}></input>
+						<h4>Hole 6</h4><input className="button cursor" type="number" name="hole6" defaultValue={props.round.hole6} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 7</h4><input type="number" name="hole7" defaultValue={props.round.hole7} onChange={handleChange}></input>
+						<h4>Hole 7</h4><input className="button cursor" type="number" name="hole7" defaultValue={props.round.hole7} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 8</h4><input type="number" name="hole8" defaultValue={props.round.hole8} onChange={handleChange}></input>
+						<h4>Hole 8</h4><input className="button cursor" type="number" name="hole8" defaultValue={props.round.hole8} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 9</h4><input type="number" name="hole9" defaultValue={props.round.hole9} onChange={handleChange}></input>
+						<h4>Hole 9</h4><input className="button cursor" type="number" name="hole9" defaultValue={props.round.hole9} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 10</h4><input type="number" name="hole10" defaultValue={props.round.hole10} onChange={handleChange}></input>
+						<h4>Hole 10</h4><input className="button cursor" type="number" name="hole10" defaultValue={props.round.hole10} onChange={handleChange}></input>
 							<br/>
-					  <h4>Hole 11</h4><input type="number" name="hole11" defaultValue={props.round.hole11} onChange={handleChange}></input>
+					  <h4>Hole 11</h4><input className="button cursor" type="number" name="hole11" defaultValue={props.round.hole11} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 12</h4><input type="number" name="hole12" defaultValue={props.round.hole12} onChange={handleChange}></input>
+						<h4>Hole 12</h4><input className="button cursor" type="number" name="hole12" defaultValue={props.round.hole12} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 13</h4><input type="number" name="hole13" defaultValue={props.round.hole13} onChange={handleChange}></input>
+						<h4>Hole 13</h4><input className="button cursor" type="number" name="hole13" defaultValue={props.round.hole13} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 14</h4><input type="number" name="hole14" defaultValue={props.round.hole14} onChange={handleChange}></input>
+						<h4>Hole 14</h4><input className="button cursor" type="number" name="hole14" defaultValue={props.round.hole14} onChange={handleChange}></input>
 							<br/>
-					<h4>Hole 15</h4><input type="number" name="hole15" defaultValue={props.round.hole15} onChange={handleChange}></input>
+					<h4>Hole 15</h4><input className="button cursor" type="number" name="hole15" defaultValue={props.round.hole15} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 16</h4><input type="number" name="hole16" defaultValue={props.round.hole16} onChange={handleChange}></input>
+						<h4>Hole 16</h4><input className="button cursor" type="number" name="hole16" defaultValue={props.round.hole16} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 17</h4><input type="number" name="hole17" defaultValue={props.round.hole17} onChange={handleChange}></input>
+						<h4>Hole 17</h4><input className="button cursor" type="number" name="hole17" defaultValue={props.round.hole17} onChange={handleChange}></input>
 							<br/>
-						<h4>Hole 18</h4><input type="number" name="hole18" defaultValue={props.round.hole18} onChange={handleChange}></input>
+						<h4>Hole 18</h4><input className="button cursor" type="number" name="hole18" defaultValue={props.round.hole18} onChange={handleChange}></input>
 							<br/>
 							<br/>
 					</> : null}

@@ -170,7 +170,8 @@ return (
 
 			{showCurrentRound ? null : <div className="container">
 				<h2 id='mainTitle'>Golf Score Tracker</h2>
-				<h4>Select Your Course Below</h4>
+				<hr/>
+				<h4 id="mainTitle2">Select Your Course Below</h4>
 			<label htmlFor="course-names"></label>
 				<select name="course-names" id="course-names" onChange={(event) => setEmptyCourse(event.target.value)}>
 				{props.courseData.map((course) => {

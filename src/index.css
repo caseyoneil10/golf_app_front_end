@@ -5,7 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(236, 238, 204)
+  background-color: rgb(236, 238, 204);
+  color: #494747;
 }
 
 code {
@@ -21,6 +22,15 @@ code {
   letter-spacing: .08em;
   font-family: "Dancing Script", cursive;
   font-size: 4.5em;
+  color: #494747;
+
+}
+#mainTitle2 {
+  font-weight: bold;
+  letter-spacing: .08em;
+  font-family: "Dancing Script", cursive;
+  font-size: 2em;
+  color: #494747;
 
 }
 
@@ -54,24 +64,30 @@ code {
   margin: auto;
   color: black;
     font-size: 1.5em;
-    border-color: #000000;
+    border-color: #3c3b3b;
 }
 .danger1 {
   background-color: #7ecb5a;
     font-size: 1.5em;
-    border-color: #000000;
+    border-color: #3c3b3b;
 }
 .danger2 {
   background-color: rgb(30, 145, 201);
   border-color: black;
     font-size: 1.5em;
-    border-color: #000000;
+    border-color: #3c3b3b;
 }
 .danger3 {
   background-color: rgb(221, 224, 71);
   border-color: black;
     font-size: 1.5em;
-    border-color: #000000;
+    border-color: #3c3b3b;
+}
+.danger4 {
+  background-color: rgb(237, 88, 68);
+  border-color: black;
+    font-size: 1.5em;
+    border-color: #3c3b3b;
 }
 
 .stats {
@@ -89,4 +105,14 @@ font-weight: bold;
   margin-top: 4em;
   font-size: 1.25em;
   text-align: center;
+}
+
+
+.cursor {
+  cursor: text;
+  }
+
+hr {
+ border: 1px solid #3c3b3b;
+ width: 50%;
 }

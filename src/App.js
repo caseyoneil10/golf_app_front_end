@@ -140,22 +140,24 @@ const handleUpdateRoundDetail = (editRoundTotal) => {
     return (
     <>
 
-      <CurrentRound userData={userData} showAllRoundsButton={showAllRoundsButton}
+      {!showAllRoundsButton || !showAllRoundsButtonDetail ? null : <CurrentRound userData={userData} showAllRoundsButton={showAllRoundsButton}
       setNoCurrentRoundInProgress={setNoCurrentRoundInProgress}
       noCurrentRoundInProgress={noCurrentRoundInProgress}
        showAllUserRounds={showAllUserRounds} handleCreate={handleCreate} handleCreateHoleScore={handleCreateHoleScore} courseData={courseData} currentRoundInProgress={currentRoundInProgress}
-       currentRoundInProgress2={currentRoundInProgress2}/>
+       currentRoundInProgress2={currentRoundInProgress2}/>}
 
       <HomeScreen courseData={courseData}/>
       <div className="container">
-      {showAllRoundsButton && !currentRoundActive  ? <button id="smaller" className="button danger" onClick={showAllUserRounds}>Show All Rounds</button> : null}
-
-      {showAllRoundsButton || currentRoundActive ? null : <button id="smaller" className="button danger" onClick={showAllUserRounds}>Close All Rounds</button>}
       <br/>
       <br/>
-      {showAllRoundsButtonDetail && !currentRoundActive ? <button id="smaller" className="button danger" onClick={showAllUserRoundsDetail}>Show Rounds Detail</button> : null}
+      {showAllRoundsButton && !currentRoundActive && showAllRoundsButtonDetail  ? <button id="smaller" className="button danger" onClick={showAllUserRounds}>Show All Rounds</button> : null}
 
-      {showAllRoundsButtonDetail || currentRoundActive ?  null : <button id="smaller" className="button danger" onClick={showAllUserRoundsDetail}>Close Rounds Detail</button>}
+      {showAllRoundsButton || currentRoundActive ? null : <button id="smaller" className="button danger4" onClick={showAllUserRounds}>Close All Rounds</button>}
+      <br/>
+      <br/>
+      {showAllRoundsButtonDetail && !currentRoundActive && showAllRoundsButton ? <button id="smaller" className="button danger" onClick={showAllUserRoundsDetail}>Show Rounds Detail</button> : null}
+
+      {showAllRoundsButtonDetail || currentRoundActive ?  null : <button id="smaller" className="button danger4" onClick={showAllUserRoundsDetail}>Close Rounds Detail</button>}
       </div>
       {userData.map((round) => {
         return (

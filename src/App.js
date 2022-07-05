@@ -103,14 +103,19 @@ const handleUpdateRoundDetail = (editRoundTotal) => {
     const [showAllRoundsDetail, setShowAllRoundsDetail] = useState(false)
     const [showAllRoundsButtonDetail, setShowAllRoundsButtonDetail] = useState(true)
     const [currentRoundActive, setCurrentRoundActive] = useState(false)
+    const [startRound, setStartRound] = useState(false)
 
     const showAllUserRounds = () => {
         setShowAllRounds(!showAllRounds)
         setShowAllRoundsButton(!showAllRoundsButton)
+        setStartRound(false)
+
     }
     const showAllUserRoundsDetail = () => {
         setShowAllRoundsButtonDetail(!showAllRoundsButtonDetail)
         setShowAllRoundsDetail(!showAllRoundsDetail)
+        setStartRound(false)
+
     }
     const showAllUserRoundsButton = () => {
         setShowAllRoundsButton(!showAllRoundsButton)
@@ -130,6 +135,7 @@ const handleUpdateRoundDetail = (editRoundTotal) => {
       setNoCurrentRoundInProgress(true)
       setShowAllRoundsDetail(false)
       setShowAllRoundsButtonDetail(false)
+      setStartRound(true)
     }
 
 
@@ -140,7 +146,7 @@ const handleUpdateRoundDetail = (editRoundTotal) => {
     return (
     <>
 
-      {!showAllRoundsButton || !showAllRoundsButtonDetail ? null : <CurrentRound userData={userData} showAllRoundsButton={showAllRoundsButton}
+      {(!showAllRoundsButton || !showAllRoundsButtonDetail) && !startRound  ? null : <CurrentRound userData={userData} showAllRoundsButton={showAllRoundsButton}
       setNoCurrentRoundInProgress={setNoCurrentRoundInProgress}
       noCurrentRoundInProgress={noCurrentRoundInProgress}
        showAllUserRounds={showAllUserRounds} handleCreate={handleCreate} handleCreateHoleScore={handleCreateHoleScore} courseData={courseData} currentRoundInProgress={currentRoundInProgress}

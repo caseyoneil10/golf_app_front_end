@@ -1,46 +1,36 @@
-# Getting Started with Create React App and Redux
+# Golf Score Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+ 
 
-## Available Scripts
+## Link to App
 
-In the project directory, you can run:
+ [Front End](https://damp-ocean-33580.herokuapp.com/api/sleepDatahttps://evening-spire-15204.herokuapp.com/)
 
-### `npm start`
+## Premise
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Helping users track their golf rounds. They can track their rounds by inputing strokes on each hole. Each hole "view" will give information about the hole. At any time a user can view statistics about their own performance on the hole and on that course.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## User Stories
 
-### `npm test`
+ - As a user, I want to add strokes or subtract strokes from a current hole.
+ - As a user, I want to see statistics on the current hole I am playing. Average score, best score, etc.
+  - As a user, I want to store my rounds for later reference.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Technologies Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   Django
+- Python
+-  React.js
+- Redux
+-   PostgresSQL
+-   JavaScript
+-  CSS Frameworks (Skeleton & Normalize)
+- GIT/GitHub
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Future Goals
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+ - User Auth
+ - Utilizing graphs to display user rounds
+ - Better styling.
+ - GPS Feature for tracking point on course and automatic switching of holes (pipe dream goal)

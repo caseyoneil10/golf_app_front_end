@@ -1,11 +1,11 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family:  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Dancing Script', cursive,
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(219, 219, 219)
+  background-color: rgb(236, 238, 204)
 }
 
 code {
@@ -13,33 +13,80 @@ code {
     monospace;
 }
 
+
+
+
 #mainTitle {
   font-weight: bold;
+  letter-spacing: .08em;
+  font-family: "Dancing Script", cursive;
+  font-size: 4.5em;
+
+}
+
+#smaller {
+  font-size: 1.1em;
 }
 
 #score {
   font-weight: bold;
-  color: green;
+  color: #7ecb5a;
   font-size: 1.5em;
 }
+#over {
+  font-weight: bold;
+  color: rgb(180, 4, 4);
+  font-size: 1.5em;
+}
+#under {
+  font-weight: bold;
+  color: #7ecb5a;
+  font-size: 1.5em;
+}
+#even {
+  font-weight: bold;
+  font-size: 1.2em;
+}
 .danger {
-  background-color: rgb(106, 106, 106);
+  background-color: rgb(208, 198, 198);
+  margin-bottom: 2em;
   text-align: center;
   margin: auto;
   color: black;
     font-size: 1.5em;
+    border-color: #000000;
 }
 .danger1 {
-  background-color: rgb(1, 116, 2);
+  background-color: #7ecb5a;
     font-size: 1.5em;
+    border-color: #000000;
 }
 .danger2 {
-  background-color: rgb(193, 0, 0);
+  background-color: rgb(30, 145, 201);
   border-color: black;
     font-size: 1.5em;
+    border-color: #000000;
 }
 .danger3 {
   background-color: rgb(221, 224, 71);
   border-color: black;
     font-size: 1.5em;
+    border-color: #000000;
+}
+
+.stats {
+  border-style: solid;
+  border-color: black;
+  margin-bottom: .5em;
+  background-color: rgb(208, 198, 198);
+}
+
+.boldh1 {
+font-weight: bold;
+}
+
+.footer {
+  margin-top: 4em;
+  font-size: 1.25em;
+  text-align: center;
 }

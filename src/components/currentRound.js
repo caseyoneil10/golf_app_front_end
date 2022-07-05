@@ -160,6 +160,10 @@ const showSubmitRound = () => {
 const roundOptions = () => {
 	setShowRoundOptions(!showRoundOptions)
 }
+const resetRound = () => {
+	setShowRoundOptions(!showRoundOptions)
+	dispatch(reset())
+}
 
 return (
 			<>
@@ -172,7 +176,7 @@ return (
 				{props.courseData.map((course) => {
 						return(
 								<>
-									<option value="" disabled selected hidden>Choose Course...</option>
+									<option value="" disabled selected hidden>Choose a Course...</option>
 									<option placeholder="select a course">{course.name}</option>
 							</>
 						)
@@ -195,42 +199,37 @@ return (
 								{overUnderParRound > 0 && hole > 1 ? <h4>You are {overUnderParRound} over par.</h4> : null}
 								{!userStats &&! showUserSubmitRound ? <button className="button danger" onClick={showUserStats}> Show User Stats</button> : null}
 								{userStats ? <button className="button danger" onClick={showUserStats}> Close User Stats</button> : null}
-								{hole > 17 && !showUserSubmitRound ? <button className="button danger" onClick={showSubmitRound}>Confirm Details and Submit Round</button> : null }
-
-								<br/>
-								<br/>
 								<form onSubmit={handleSubmit}>
 									{hole > 17 ?
 									<div>
-										{showUserSubmitRound ? <> <input value={date} onChange={handleChange} id="Date" type="date" name='date'></input>
+									{showUserSubmitRound ? <> <h5>Date</h5><input value={date} onChange={handleChange} id="Date" type="date" name='date'></input>
 										<br/>
 										<br/>
-										<input value={totalScore} onChange={handleChange} type="number" name='score' readOnly></input>
+										<h5>TOTAL SCORE</h5><input value={totalScore} onChange={handleChange} type="number" name='score' readOnly></input>
 										<br/>
 										<br/>
-										<input value={course.name} onChange={handleChange} type="text" name='course' readOnly></input>
+										<h5>Course</h5><input value={course.name} onChange={handleChange} type="text" name='course' readOnly></input>
 										<br/>
 										<br/>
-										<input placeholder="Course Conditions (fair, good, rain, etc.)"type="text" onChange={handleChange} defaultValue=
+										<h5>Weather Conditions</h5><input placeholder="Course Conditions (fair, good, rain, etc.)"type="text" onChange={handleChange} defaultValue=
 										"Normal Weather" value={round.weather} name='weather'></input>
 										<br/>
 										<br/>
 									<input className="button-primary" type="submit"></input>
 									<br/>
 									<br/>
-									<button className="button danger2" onClick={showSubmitRound}>Close Details</button> </> : null }
+									<button className="button danger2" onClick={showSubmitRound}>Back</button> </> : null }
 									</div> : null}
 								</form>
 						</div>
 					)
 				})} </>: null}
-
-				{showCurrentRound && userStats ? <div className="container">
-				<h1>Average of {averageShotsRounded} strokes on this hole</h1>
-				<h1>Best Score on This Hole: {lowestScore}</h1>
-				{overUnderPar < 0 ? <h1>You are {overUnderPar} for this hole </h1> : null}
-				{overUnderPar == 0 ? <h1>You are even for this hole </h1> : null}
-				{overUnderPar > 0 ? <h1>You are {overUnderPar} over for this hole </h1> : null}
+				{showCurrentRound && userStats ? <div className="container stats">
+				<h1 className="boldh1">Average Strokes This Hole <span id="score"><br/>{averageShotsRounded}</span> </h1>
+				<h1 className="boldh1">Best Score on This Hole<br/> <span id="score">{lowestScore}</span></h1>
+				{overUnderPar < 0 ? <h1>You are <span id='under'> {overUnderPar}   </span>  for this hole </h1> : null}
+				{overUnderPar == 0 ? <h1>You are <span id="even">EVEN</span> for this hole </h1> : null}
+				{overUnderPar > 0 ? <h1>You are <span id="over">{overUnderPar}</span> over for this hole </h1> : null}
 				{overUnderParRound < 0 && hole > 1 ? <h1>Total Score for this round is {totalScore}. You are {overUnderParRound} under par.</h1> : null}
 				{overUnderParRound == 0 && hole > 1 ? <h1>Total Score for this round is {totalScore}. You are even to par.</h1> : null}
 
@@ -250,10 +249,13 @@ return (
 					<button className="button danger2" onClick={() => dispatch(previousHole()) }>Previous Hole</button>
 					<br/>
 					<br/>
+						{hole > 17 && !showUserSubmitRound ? <> <button className="button-primary" onClick={showSubmitRound}>Submit Round </button> <br/> <br/> </> : null }
+
 					<button className="button danger" onClick={roundOptions}>Round Options</button>
 					<br/>
 					<br/>
-					{showRoundOptions  ? <> <button className="button" onClick={() => dispatch(reset()) }>Restart Round</button>
+
+					{showRoundOptions  ? <> <button className="button" onClick={resetRound}>Restart Round</button>
 					<br/>
 					<br/>
 					<button className="button" onClick={goHome} >Quit Round and Go Home </button> </> : null}

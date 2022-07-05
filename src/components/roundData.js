@@ -22,7 +22,7 @@ const RoundData = (props) => {
 
 	return (
 		<div className="container">
-						<h2>{props.round.course}</h2>
+						<h2 className="boldh1" id="mainTitle">{props.round.course}</h2>
 						<h3>Date: {props.round.date}</h3>
 						<h3>Score: {props.round.score}</h3>
 						<h4>Weather: {props.round.weather}</h4>

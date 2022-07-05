@@ -180,14 +180,14 @@ return (
 
 			{showCurrentRound ? null : <div className="container">
 				<h2 id='mainTitle'>Golf Score Tracker</h2>
-				<hr/>
+				<img width='100px' height= '100px' src='https://freepngclipart.com/download/golf/11400-crossed-golf-club-images-image-png.png'/>
 				<h4 id="mainTitle2">Select Your Course Below</h4>
 			<label htmlFor="course-names"></label>
 				<select name="course-names" id="course-names" onChange={(event) => setEmptyCourse(event.target.value)}>
 				{props.courseData.map((course) => {
 						return(
 								<>
-									<option value="" disabled selected hidden>Choose a Course...</option>
+									<option disabled selected hidden>Choose a Course...</option>
 									<option placeholder="select a course">{course.name}</option>
 							</>
 						)
@@ -203,7 +203,7 @@ return (
 							<div className="container" key={course.id}>
 								<h2 id="mainTitle">{course.name} </h2>
 
-								<h3>Hole # {hole}</h3>
+								<h2>Hole # {hole}</h2>
 
 								<h3>Par {eval(currentHolePar)} || {eval(currentHoleYardage)} Yards </h3>
 

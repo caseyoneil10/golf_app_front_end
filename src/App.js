@@ -146,7 +146,8 @@ const handleUpdateRoundDetail = (editRoundTotal) => {
     return (
     <>
 
-      {(!showAllRoundsButton || !showAllRoundsButtonDetail) && !startRound  ? null : <CurrentRound userData={userData} showAllRoundsButton={showAllRoundsButton}
+      {(!showAllRoundsButton || !showAllRoundsButtonDetail) && !startRound  ? null : <CurrentRound userData={userData}
+      roundData={roundData} showAllRoundsButton={showAllRoundsButton}
       setNoCurrentRoundInProgress={setNoCurrentRoundInProgress}
       noCurrentRoundInProgress={noCurrentRoundInProgress}
        showAllUserRounds={showAllUserRounds} handleCreate={handleCreate} handleCreateHoleScore={handleCreateHoleScore} courseData={courseData} currentRoundInProgress={currentRoundInProgress}

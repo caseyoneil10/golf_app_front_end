@@ -23,6 +23,7 @@ let emptyHole = {course: '', date: '', hole1: 0, hole2: 0, hole3: 0, hole4: 0, h
 const [round, setRound] = useState(emptyRound)
 const [holeScore, setHoleScore] = useState(emptyHole)
 let holeAvg = []
+let roundBestScores = []
 let totalShots = 0
 
 const handleChange = (event) => {
@@ -116,6 +117,14 @@ for (let i = 0; i < props.userData.length; i++) {
 			}
 }
 
+for (let i = 0; i < props.roundData.length; i++) {
+	if (props.roundData[i].course == emptyCourse) {
+				roundBestScores.push(props.roundData[i].score)
+			}
+}
+
+
+
 for (let i = 0; i < holeAvg.length; i++) {
   totalShots += holeAvg[i]
 }
@@ -124,6 +133,7 @@ let averageShots = (totalShots / holeAvg.length)
 let averageShotsRounded = averageShots.toFixed(1)
 
 holeAvg.sort(function(a, b){return a-b})
+roundBestScores.sort(function(a, b){return a-b})
 
 //https://www.w3schools.com/jsref/jsref_sort.asp
 let lowestScore = holeAvg[0]
@@ -192,22 +202,26 @@ return (
           return (
 							<div className="container" key={course.id}>
 								<h2 id="mainTitle">{course.name} </h2>
+
 								<h3>Hole # {hole}</h3>
+
 								<h3>Par {eval(currentHolePar)} || {eval(currentHoleYardage)} Yards </h3>
 
-
-
 								{score > eval(currentHolePar) ? <> <h3>Current Score on hole {hole} <br/> <span id="scoreOver">{score}</span> </h3> </> : null}
+
 								{score < eval(currentHolePar) ? <> <h3>Current Score on hole {hole} <br/> <span id="scoreUnder">{score}</span> </h3> </> : null}
+
 								{score == eval(currentHolePar) ? <> <h3>Current Score on hole {hole} <br/> <span id="scoreEqual">{score}</span> </h3> </> : null}
 
-
-
 								{overUnderParRound < 0 && hole > 1 ? <h4>You are {overUnderParRound} under par.</h4> : null}
+
 								{overUnderParRound == 0 && hole > 1 ? <h4>You are even to par.</h4> : null}
 								{overUnderParRound > 0 && hole > 1 ? <h4>You are {overUnderParRound} over par.</h4> : null}
+
 								{!userStats &&! showUserSubmitRound ? <button className="button danger" onClick={showUserStats}> Show User Stats</button> : null}
+
 								{userStats ? <button className="button danger" onClick={showUserStats}> Close User Stats</button> : null}
+
 								<form onSubmit={handleSubmit}>
 									{hole > 17 ?
 									<div>
@@ -236,6 +250,7 @@ return (
 				{showCurrentRound && userStats ? <div className="container stats">
 				<h1 className="boldh1">Average Strokes This Hole <span id="score"><br/>{averageShotsRounded}</span> </h1>
 				<h1 className="boldh1">Best Score on This Hole<br/> <span id="score">{lowestScore}</span></h1>
+				<h1 className="boldh1">Best Round<br/> <span id="score">{roundBestScores[0]}</span></h1>
 				{overUnderPar < 0 ? <h1>You are <span id='under'> {overUnderPar}   </span>  for this hole </h1> : null}
 				{overUnderPar == 0 ? <h1>You are <span id="even">EVEN</span> for this hole </h1> : null}
 				{overUnderPar > 0 ? <h1>You are <span id="over">{overUnderPar}</span> over for this hole </h1> : null}

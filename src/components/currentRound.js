@@ -194,7 +194,15 @@ return (
 								<h2 id="mainTitle">{course.name} </h2>
 								<h3>Hole # {hole}</h3>
 								<h3>Par {eval(currentHolePar)} || {eval(currentHoleYardage)} Yards </h3>
-								<h3>Current Score on hole {hole} <br/> <span id="score">{score}</span> </h3>
+
+
+
+								{score > eval(currentHolePar) ? <> <h3>Current Score on hole {hole} <br/> <span id="scoreOver">{score}</span> </h3> </> : null}
+								{score < eval(currentHolePar) ? <> <h3>Current Score on hole {hole} <br/> <span id="scoreUnder">{score}</span> </h3> </> : null}
+								{score == eval(currentHolePar) ? <> <h3>Current Score on hole {hole} <br/> <span id="scoreEqual">{score}</span> </h3> </> : null}
+
+
+
 								{overUnderParRound < 0 && hole > 1 ? <h4>You are {overUnderParRound} under par.</h4> : null}
 								{overUnderParRound == 0 && hole > 1 ? <h4>You are even to par.</h4> : null}
 								{overUnderParRound > 0 && hole > 1 ? <h4>You are {overUnderParRound} over par.</h4> : null}

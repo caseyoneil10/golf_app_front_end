@@ -43,6 +43,21 @@ code {
   color: #7ecb5a;
   font-size: 1.5em;
 }
+#scoreOver {
+  font-weight: bold;
+  color: #c45d46;
+  font-size: 1.5em;
+}
+#scoreUnder {
+  font-weight: bold;
+  color: #7ecb5a;
+  font-size: 1.5em;
+}
+#scoreEqual {
+  font-weight: bold;
+  color: #505050;
+  font-size: 1.5em;
+}
 #over {
   font-weight: bold;
   color: rgb(180, 4, 4);

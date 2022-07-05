@@ -151,17 +151,18 @@ const handleUpdateRoundDetail = (editRoundTotal) => {
       {showAllRoundsButton && !currentRoundActive  ? <button onClick={showAllUserRounds}>Show All Rounds</button> : null}
 
       {showAllRoundsButton || currentRoundActive ? null : <button onClick={showAllUserRounds}>Close All Rounds</button>}
-
+      <br/>
+      <br/>
       {showAllRoundsButtonDetail && !currentRoundActive ? <button onClick={showAllUserRoundsDetail}>Show All Rounds Detail</button> : null}
 
       {showAllRoundsButtonDetail || currentRoundActive ?  null : <button onClick={showAllUserRoundsDetail}>Close All Rounds Detail</button>}
       </div>
       {userData.map((round) => {
         return (
-          <>
+          <div className="container">
       {showAllRoundsDetail ? <UserData userData={userData} handleDeleteRoundDetail={handleDeleteRoundDetail} handleUpdateRoundDetail={handleUpdateRoundDetail}
       round={round}/> : null}
-        </>
+        </div>
       )})}
       {roundData.map((round) => {
         return(

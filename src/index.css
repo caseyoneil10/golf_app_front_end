@@ -5,9 +5,36 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(219, 219, 219)
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#mainTitle {
+  font-weight: bold;
+}
+
+#score {
+  font-weight: bold;
+  color: green;
+  font-size: 1.5em;
+}
+.danger {
+  background-color: rgb(106, 106, 106);
+  text-align: center;
+  margin: auto;
+  color: black;
+    font-size: 1.5em;
+}
+.danger1 {
+  background-color: rgb(1, 116, 2);
+    font-size: 1.5em;
+}
+.danger2 {
+  background-color: rgb(193, 0, 0);
+  border-color: black;
+    font-size: 1.5em;
 }

@@ -165,7 +165,7 @@ return (
 			<>
 
 			{showCurrentRound ? null : <div className="container">
-				<h2>Golf Score Tracker</h2>
+				<h2 id='mainTitle'>Golf Score Tracker</h2>
 				<h4>Select Your Course Below</h4>
 			<label htmlFor="course-names"></label>
 				<select name="course-names" id="course-names" onChange={(event) => setEmptyCourse(event.target.value)}>
@@ -177,7 +177,7 @@ return (
 							</>
 						)
 					})}
-				</select> <button onClick={showCurrentRoundFunction}>Start Round</button> </div>}
+				</select><br/><br/> <button className="button-primary" onClick={showCurrentRoundFunction}>Start Round</button> </div>}
 				{showCurrentRound ? <>
 			{props.courseData.filter((course) => {
 				if (course.name == emptyCourse) {
@@ -186,19 +186,19 @@ return (
 			}).map((course) => {
           return (
 							<div className="container" key={course.id}>
-								<h2>{course.name} </h2>
+								<h2 id="mainTitle">{course.name} </h2>
 								<h3>Hole # {hole}</h3>
-								<h4>Par {eval(currentHolePar)} || {eval(currentHoleYardage)} Yards </h4>
-								<h4>Current Score on hole #{hole} is: {score} </h4>
+								<h3>Par {eval(currentHolePar)} || {eval(currentHoleYardage)} Yards </h3>
+								<h4>Current Score on hole #{hole} is: <br/> <span id="score">{score}</span> </h4>
 
 								{overUnderParRound < 0 && hole > 1 ? <h4>You are {overUnderParRound} under par.</h4> : null}
 								{overUnderParRound == 0 && hole > 1 ? <h4>You are even to par.</h4> : null}
 								{overUnderParRound > 0 && hole > 1 ? <h4>You are {overUnderParRound} over par.</h4> : null}
-								{hole> 17 ? <button onClick={showSubmitRound}>Confirm Details and Submit Round</button> : null }
-								<br/>
-								<br/>
-								{!userStats ? <button onClick={showUserStats}> Show User Stats</button> : null}
-								{userStats ? <button onClick={showUserStats}> Close User Stats</button> : null}
+
+								{!userStats &&! showUserSubmitRound ? <button className="danger" onClick={showUserStats}> Show User Stats</button> : null}
+								{userStats ? <button className="danger" onClick={showUserStats}> Close User Stats</button> : null}
+								{hole > 17 && !showUserSubmitRound ? <button className="danger" onClick={showSubmitRound}>Confirm Details and Submit Round</button> : null }
+
 								<br/>
 								<br/>
 								<form onSubmit={handleSubmit}>
@@ -217,10 +217,10 @@ return (
 										"Normal Weather" value={round.weather} name='weather'></input>
 										<br/>
 										<br/>
-									<input type="submit"></input>
+									<input className="button-primary" type="submit"></input>
 									<br/>
 									<br/>
-									<button onClick={showSubmitRound}>Close Details</button> </> : null }
+									<button className="danger2" onClick={showSubmitRound}>Close Details</button> </> : null }
 									</div> : null}
 								</form>
 						</div>
@@ -228,35 +228,37 @@ return (
 				})} </>: null}
 
 				{showCurrentRound && userStats ? <div className="container">
-				<h1>You Average {averageShotsRounded} strokes on this hole</h1>
-				<h1>Your Best Score on this hole is {lowestScore}</h1>
-				{overUnderPar < 0 ? <h1>You are currently {overUnderPar} for this hole </h1> : null}
-				{overUnderPar == 0 ? <h1>You are currently even for this hole </h1> : null}
-				{overUnderPar > 0 ? <h1>You are currently {overUnderPar} over for this hole </h1> : null}
+				<h1>Average of {averageShotsRounded} strokes on this hole</h1>
+				<h1>Best Score on This Hole: {lowestScore}</h1>
+				{overUnderPar < 0 ? <h1>You are {overUnderPar} for this hole </h1> : null}
+				{overUnderPar == 0 ? <h1>You are even for this hole </h1> : null}
+				{overUnderPar > 0 ? <h1>You are {overUnderPar} over for this hole </h1> : null}
 				{overUnderParRound < 0 && hole > 1 ? <h1>Total Score for this round is {totalScore}. You are {overUnderParRound} under par.</h1> : null}
 				{overUnderParRound == 0 && hole > 1 ? <h1>Total Score for this round is {totalScore}. You are even to par.</h1> : null}
 
 				{overUnderParRound > 0 && hole > 1 ? <h1>Total Score for this round is {totalScore}.</h1> : null}
 			</div> : null}
 				{showCurrentRound  && !showUserSubmitRound ? <div className="container">
-				<button onClick={() => dispatch(increment()) }>Add Stroke</button>
-				<button onClick={() => dispatch(decrement()) }>Subtract Stroke</button>
+				<button className="danger1" onClick={() => dispatch(increment()) }>Add Stroke</button>
+				<br/>
+				<br/>
+				<button className="danger2" onClick={() => dispatch(decrement()) }>Subtract Stroke</button>
 					<br/>
 					<br/>
 					<form onSubmit={handleChangeHoleScore}>
 						<input hidden value={score} name={`${currentHole}`}onChange={handleChangeHoleScore}></input>
-						<button type='submit'>Next Hole</button>
+						<button className="danger1" type='submit'>Next Hole</button>
 					</form>
-					<button onClick={() => dispatch(previousHole()) }>Previous Hole</button>
+					<button className="danger2" onClick={() => dispatch(previousHole()) }>Previous Hole</button>
 					<br/>
 					<br/>
-					<button onClick={roundOptions}>Round Options</button>
+					<button className="danger" onClick={roundOptions}>Round Options</button>
 					<br/>
 					<br/>
-					{showRoundOptions  ? <> <button onClick={() => dispatch(reset()) }>Restart Round</button>
+					{showRoundOptions  ? <> <button className="danger1" onClick={() => dispatch(reset()) }>Restart Round</button>
 					<br/>
 					<br/>
-					<button onClick={goHome} >Quit Round and Go To Home Screen</button> </> : null}
+					<button className="danger2" onClick={goHome} >Quit Round and Go To Home Screen</button> </> : null}
 				</div> : null}
 				</>
 		)

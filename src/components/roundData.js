@@ -37,7 +37,7 @@ const RoundData = (props) => {
 						</form> : null}
 						{!showEditForm ? <button onClick={editForm}>Edit Round</button> : null}
 						{showEditForm ? <button onClick={editForm}>Close Edit</button> : null}
-						<button onClick={() => {
+						<button className="danger2" onClick={() => {
                         props.handleDeleteRound(props.round
                         )
                       }}>Delete Round

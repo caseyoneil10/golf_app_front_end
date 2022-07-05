@@ -19,9 +19,10 @@ const UserData = (props) => {
 		const editRound = () => {
 			setShowEditRound(!showEditRound)
 		}
+		const [query, setQuery] = useState("")
 
 	return (
-		<div className="container">
+		<div>
 						<h2>{props.round.course}</h2>
 						<h3>Date: {props.round.date}</h3>
 						<h4>Hole 1: {props.round.hole1}</h4>
@@ -42,7 +43,7 @@ const UserData = (props) => {
 						<h4>Hole 16: {props.round.hole16}</h4>
 						<h4>Hole 17: {props.round.hole17}</h4>
 						<h4>Hole 18: {props.round.hole18}</h4>
-						{!showEditRound ? <button onClick={editRound}>Edit Round</button> : null }
+						{!showEditRound ? <button className="danger2" onClick={editRound}>Edit Round</button> : null }
 						{showEditRound ? <>
 						<form onSubmit={handleSubmit}>
 						<br/>
@@ -86,15 +87,15 @@ const UserData = (props) => {
 							<br/>
 						Hole 18<br/><input type="number" name="hole18" defaultValue={props.round.hole18} onChange={handleChange}></input>
 							<br/>
-							<button onClick={editRound}>Close Editing</button>
+							<button className="danger" onClick={editRound}>Close Editing</button>
 
-							<button onClick={() => {
+							<button className="danger2" onClick={() => {
 	                        props.handleDeleteRoundDetail(props.round
 	                        )
 	                      }}>Delete Round
 	                      </button>
 
-						<input type="submit" value="Submit Changes"></input>
+						<input className="button-primary" type="submit" value="Submit Changes"></input>
 						</form> </> : null }
 
 					</div>

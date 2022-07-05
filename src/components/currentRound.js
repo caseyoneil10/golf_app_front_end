@@ -202,7 +202,7 @@ return (
           return (
 							<div className="container" key={course.id}>
 								<h2 id="mainTitle">{course.name} </h2>
-
+								<img width='100px' height= '100px' src='https://freepngclipart.com/download/golf/11400-crossed-golf-club-images-image-png.png'/>
 								<h2>Hole # {hole}</h2>
 
 								<h3>Par {eval(currentHolePar)} || {eval(currentHoleYardage)} Yards </h3>
@@ -217,7 +217,6 @@ return (
 
 								{overUnderParRound == 0 && hole > 1 ? <h4>You are even to par.</h4> : null}
 								{overUnderParRound > 0 && hole > 1 ? <h4>You are {overUnderParRound} over par.</h4> : null}
-
 								{!userStats &&! showUserSubmitRound ? <button className="button danger" onClick={showUserStats}> Show User Stats</button> : null}
 
 								{userStats ? <button className="button danger" onClick={showUserStats}> Close User Stats</button> : null}
